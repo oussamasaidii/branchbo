@@ -1,4 +1,7 @@
 <%- include('partials/no_header') %>
+<% if (typeof errorMessage !== 'undefined') { %>
+  <p class="error-message"><%= errorMessage %></p>
+<% } %>
 
 <main>
     <section class="main-login">

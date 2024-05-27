@@ -3,6 +3,10 @@ import ejs from "ejs";
 import dotenv from "dotenv";
 import path, { format } from "path";
 import { connect, login } from "./database";
+import session from "./session";
+import { secureMiddleware } from "./session";
+
+import { User } from "./interfaces";
 
 dotenv.config();
 
@@ -12,6 +16,7 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(session);
 app.set('views', path.join(__dirname, "views"));
 app.set("port", process.env.PORT || 3000);
 
@@ -19,15 +24,29 @@ app.set("port", process.env.PORT || 3000);
 app.post("/login", async (req, res) => {
     const { email, password } = req.body;
     try {
-        const user = await login(email, password);
-        res.redirect('/landing-page');
+        let user: User | null = await login(email, password);
+        if (user !== null) {
+            user.password = ""; 
+            req.session.user = user;
+            res.redirect('/landing-page');
+        } else {
+            throw new Error("User not found");
+        }
     } catch (error) {
-        res.render('index', { errorMessage: error.message });
+        res.render('index', { errorMessage: (error as Error).message });
     }
 });
 
-app.get("/", async (req, res) => {
-    res.render("index");
+// app.get("/", async (req, res) => {
+//     res.render("index", { errorMessage: null });
+// });
+
+app.get("/", secureMiddleware, async(req, res) => {
+    if (req.session.user) {
+        res.render("landing-page", {user: req.session.user});
+    } else {
+        res.redirect("/");
+    }
 });
 
 app.get('/registration', (req, res) => {
@@ -70,6 +89,11 @@ app.get('/user-profile', (req, res) => {
     res.render('user-profile'); 
 });
 
+app.get("/logout", async(req, res) => {
+    req.session.destroy(() => {
+        res.redirect("/");
+    });
+});
 
 app.listen(app.get("port"), async() => {
     try {
