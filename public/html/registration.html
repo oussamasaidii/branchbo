@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <section class="video-background">
+        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+            <source src="/project/frontend/assets/videos/4k-blue-red-particles-background.mp4" type="video/mp4">
+            Jouw browser ondersteunt geen video tag.
+        </video>
+    </section>
+    <header class="landing-page">
+        <nav>
+            <a href="login.html">Ga terug</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="main-login">
+            <article class="left-login">
+                <h2>Registreren bij TiltedTowers</h2>
+              <!--  <img src="/TiltedTowers/project/Images/TiltedTowers-LP.jpg" class="left-login-image" alt="TiltedTowers"> -->
+            </article>
+            <section class="right-login">
+                <article class="card-login">
+                    <form action="register_process.php" method="post">
+                        <article class="textfield">
+                            <label for="username">Gebruikersnaam</label>
+                            <input type="text" name="username" placeholder="Gebruikersnaam" required>
+                        </article>
+                        <article class="textfield">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" placeholder="Email" required>
+                        </article>
+                        <article class="textfield">
+                            <label for="password">Wachtwoord</label>
+                            <input type="password" name="password" placeholder="Wachtwoord" required>
+                        </article>
+                        <article class="textfield">
+                            <label for="password-repeat">Herhaal Wachtwoord</label>
+                            <input type="password" name="password-repeat" placeholder="Herhaal Wachtwoord" required>
+                        </article>
+                        <article class="textfield"> 
+                            <label for="game">Voor welke game wens je je te registreren?</label>
+                            <select name="game" id="game" required>
+                                <option value="fifa">Fifa - binnenkort beschikbaar</option>
+                                <option value="fortnite">Fortnite</option>
+                                <option value="magic">Magic The Gathering - binnenkort beschikbaar</option>
+                                <option value="pokemon">Pokémon - binnenkort beschikbaar</option>
+                                <option value="lotr">Lord Of The Rings - binnenkort beschikbaar</option>
+                                <option value="lego">Lego Masters - binnenkort beschikbaar</option>
+                            </select>
+                        </article>
+                        <button class="btn-login" type="submit"><p>Registreer</p></button>
+                    </form>
+                </article>
+            </section>
+        </section>
+    </main>
+    <aside></aside>
+    <!--
+    <footer>
+        <section class="footer-content">
+            <p>© ChatGPT by OpenAI &copy; Epic-Games </p>
+
+        </section>
+    </footer>
+    -->
+</body>
+</html>

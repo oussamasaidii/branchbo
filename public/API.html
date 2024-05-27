@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://cdn.jsdelivr.net/gh/Fortnite-API/nodejs-wrapper@1.1.0-web/FNAPIcom.js"></script>
+  </head>
+  <body>
+    <pre id="response"></pre>
+    <script>
+      const client = new FNAPIcom.Client({
+        language: FNAPIcom.Language.English,
+      });
+
+      client.aesKeys().then((res) => {
+        document.getElementById('response').innerText = JSON.stringify(res, null, 2);
+      });
+    </script>
+  </body>
+</html>

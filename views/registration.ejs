@@ -1,0 +1,46 @@
+<%- include('partials/header_registration')%>
+
+<main>
+    <section class="main-login">
+        <article class="left-login">
+            <h2>Registreren bij TiltedTowers</h2>
+          <!--  <img src="/TiltedTowers/project/Images/TiltedTowers-LP.jpg" class="left-login-image" alt="TiltedTowers"> -->
+        </article>
+        <section class="right-login">
+            <article class="card-login">
+                <form>
+                    <article class="textfield">
+                        <label for="username">Gebruikersnaam</label>
+                        <input type="text" name="username" placeholder="Gebruikersnaam" required>
+                    </article>
+                    <article class="textfield">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" placeholder="Email" required>
+                    </article>
+                    <article class="textfield">
+                        <label for="password">Wachtwoord</label>
+                        <input type="password" name="password" placeholder="Wachtwoord" required>
+                    </article>
+                    <article class="textfield">
+                        <label for="password-repeat">Herhaal Wachtwoord</label>
+                        <input type="password" name="password-repeat" placeholder="Herhaal Wachtwoord" required>
+                    </article>
+                    <article class="textfield"> 
+                        <label for="game">Voor welke game wens je je te registreren?</label>
+                        <select name="game" id="game" required>
+                            <option value="fifa">Fifa - binnenkort beschikbaar</option>
+                            <option value="fortnite">Fortnite</option>
+                            <option value="magic">Magic The Gathering - binnenkort beschikbaar</option>
+                            <option value="pokemon">Pokémon - binnenkort beschikbaar</option>
+                            <option value="lotr">Lord Of The Rings - binnenkort beschikbaar</option>
+                            <option value="lego">Lego Masters - binnenkort beschikbaar</option>
+                        </select>
+                    </article>
+                    <button class="btn-login" type="submit"><p>Registreer</p></button>
+                </form>
+            </article>
+        </section>
+    </section>
+</main>
+
+<%- include('partials/footer')%>

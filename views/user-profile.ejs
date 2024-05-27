@@ -1,0 +1,17 @@
+<%- include('partials/header_user-profile')%>
+
+<main>
+    <section class="profile-container">
+        <article class="profile-pic">
+        <button class="action-button"><i class="fa fa-edit"></i></button>
+    </article>
+    
+        <h1 class="username">Naam gebruiker</h1>
+        <article class="username-change">
+            <input type="text" id="Nieuwe Gebruikersnaam" placeholder="Nieuwe Gebruikersnaam">
+            <button onclick="changeUsername()">Bevestigen</button>
+        </article>
+    </section>
+</main>
+
+<%- include('partials/footer')%>
