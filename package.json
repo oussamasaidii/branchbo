@@ -1,0 +1,25 @@
+{
+  "name": "wplbranchbo",
+  "version": "1.0.0",
+  "description": "branch van bilal en oussama functionaliteit",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oussamasaidii/branchbo.git"
+  },
+  "keywords": [
+    "branchbo"
+  ],
+  "author": "Oussama Saidi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oussamasaidii/branchbo/issues"
+  },
+  "homepage": "https://github.com/oussamasaidii/branchbo#readme",
+  "devDependencies": {
+    "@types/readline-sync": "^1.4.8"
+  }
+}
