@@ -40,7 +40,7 @@ router.post("/register", async (req: Request, res: Response) => {
             throw new Error("Er is een fout opgetreden bij het invoegen van de nieuwe gebruiker.");
         }
 
-        res.status(201).send("Registratie succesvol. U kunt nu inloggen.");
+        // res.status(201).send("Registratie succesvol. U kunt nu inloggen.");
         res.redirect("/login");
     } catch (error: any) {
         console.error("Fout bij registratie:", error);

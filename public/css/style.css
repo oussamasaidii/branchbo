@@ -93,42 +93,42 @@ margin-left: auto;
 
 }
 /**************************   Nieuwe startpagina   *******************************/
+#index-container {
+  height: 50vh;
+}
+
 #login-register-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #000000d5;
+  height: 30vh;
+}
+
+#index-header {
+  font-family: "Audiowide", sans-serif;
+  font-size: 40px;
 }
 
 #buttons-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   align-items: center;
+  margin: 30px; 
 }
 
 #login-btn,
 #register-btn {
   text-decoration: none;
   padding: 15px 40px;
-  margin: 10px;
+  margin-bottom: 10px; 
   border-radius: 30px;
   border: none;
   font-family: "Audiowide", sans-serif;
   font-size: 1.2em;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-}
-
-#login-btn {
   background-color: #5148699a;
   color: white;
-}
-
-#register-btn {
-  background-color: transparent;
-  color: #5148699a;
-  border: 2px solid #5148699a;
 }
 
 #login-btn:hover,
@@ -137,10 +137,13 @@ margin-left: auto;
   color: hsl(0, 94%, 50%);
 }
 
+#buttons-container p {
+  color: white; 
+  font-family: "Audiowide", sans-serif; 
+}
 .registration-link {
   text-decoration: none;
 }
-
 
 
 

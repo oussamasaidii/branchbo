@@ -52,10 +52,9 @@
                 <span>Mijn Profiel</span>
                 <img src='./assets/Images/UserProfileLogo-Nav.jpg' style='display: none;'/>
             </a>
-            <a href="/" class="nav-link">
-                <span>Uitloggen</span>
-                <img src='./assets/Images/LockIcon-Nav.png' style='display: none;'/>
-            </a>
+            <form action="/logout" method="POST">
+                <button type="submit">Uitloggen</button>
+            </form>
         </article>
         </nav>
     </header>

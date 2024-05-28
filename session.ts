@@ -1,6 +1,6 @@
 import { uri } from "./database";
 import session, { Store } from "express-session";
-import { User, FlashMessage } from "./interfaces";
+import { User } from "./interfaces";
 import mongoDbSession from "connect-mongodb-session";
 import { NextFunction, Request, Response } from "express";
 
@@ -36,11 +36,10 @@ export function secureMiddleware(req: Request, res: Response, next: NextFunction
         res.locals.user = req.session.user;
         next();
     } else {
-        res.redirect("/login");
+        res.redirect("/login", );
     }
 };
 
 export interface SessionData {
     user?: User;
-    message?: FlashMessage;
 }

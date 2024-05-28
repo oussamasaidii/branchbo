@@ -21,6 +21,7 @@ app.use(session);
 app.set("views", path.join(__dirname, "views"));
 app.set("port", process.env.PORT || 3000);
 
+// Routes
 app.use(loginRouter());
 app.use(homeRouter());
 app.use(registrationRouter());
@@ -34,6 +35,7 @@ app.listen(app.get("port"), async () => {
         process.exit(1);
     }
 });
+
 
 
 
