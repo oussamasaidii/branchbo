@@ -28,6 +28,7 @@ async function createInitialUser() {
         username: "admin",
         email: email,
         password: hashedPassword,
+        game: "Fortnite",
     });
 }
 

@@ -1,0 +1,33 @@
+<%- include('partials/no_header') %>
+
+<main>
+    <section class="main-login">
+      <article class="left-login">
+        <!---->
+        <h1>Welkom bij TiltedTowers</h1>
+     <!--  <img src="/project/Images/UserLogo.jpg" class="left-login-image" alt="TiltedTowers"> -->
+      </article>
+      <section class="right-login">
+        <section class="card-login">
+          <h1>INLOGGEN</h1>
+          <form action="/login" method="post">
+            <article class="textfield">
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" placeholder="Email">
+            </article>
+            <article class="textfield">
+              <label for="password">Wachtwoord</label>
+              <input type="password" id="password" name="password" placeholder="Wachtwoord">
+            </article>
+            <button type="submit" class="btn-login"><p>Login</p></button>
+          </form>
+          <% if (errorMessage) { %>
+            <p class="error-message"><%= errorMessage %></p><br>
+          <% } %>
+          <p>Nog geen account? <a class="registration-link" href="registration">Account aanmaken</a></p>
+        </section>
+      </section>
+    </section>
+</main>
+
+<%- include('partials/footer') %>

@@ -1,36 +1,12 @@
 <%- include('partials/no_header') %>
-<% if (typeof errorMessage !== 'undefined') { %>
-  <p class="error-message"><%= errorMessage %></p>
-<% } %>
 
 <main>
-    <section class="main-login">
-      <article class="left-login">
-        <!---->
-        <h1>Welkom bij TiltedTowers</h1>
-     <!--  <img src="/project/Images/UserLogo.jpg" class="left-login-image" alt="TiltedTowers"> -->
-      </article>
-      <section class="right-login">
-        <section class="card-login">
-          <h1>INLOGGEN</h1>
-          <form action="/login" method="post">
-            <article class="textfield">
-              <label for="email">Email:</label>
-              <input type="email" id="email" name="email" placeholder="Email">
-            </article>
-            <article class="textfield">
-              <label for="password">Wachtwoord</label>
-              <input type="password" id="password" name="password" placeholder="Wachtwoord">
-            </article>
-            <button type="submit" class="btn-login"><p>Login</p></button>
-          </form>
-          <% if (errorMessage) { %>
-            <p class="error-message"><%= errorMessage %></p>
-          <% } %>
-          <p>Nog geen account? <a class="registration-link" href="registration">Account aanmaken</a></p>
-        </section>
-      </section>
-    </section>
+<section id="login-register-container">
+    <article id="buttons-container">
+        <a href="login" id="login-btn">Login</a>
+        <a href="registration" id="register-btn" class="registration-link">Register</a>
+    </article>
+</section>
 </main>
 
 <%- include('partials/footer') %>

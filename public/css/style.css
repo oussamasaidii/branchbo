@@ -92,6 +92,59 @@ nav a:last-child {
 margin-left: auto; 
 
 }
+/**************************   Nieuwe startpagina   *******************************/
+#login-register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #000000d5;
+}
+
+#buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#login-btn,
+#register-btn {
+  text-decoration: none;
+  padding: 15px 40px;
+  margin: 10px;
+  border-radius: 30px;
+  border: none;
+  font-family: "Audiowide", sans-serif;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#login-btn {
+  background-color: #5148699a;
+  color: white;
+}
+
+#register-btn {
+  background-color: transparent;
+  color: #5148699a;
+  border: 2px solid #5148699a;
+}
+
+#login-btn:hover,
+#register-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: hsl(0, 94%, 50%);
+}
+
+.registration-link {
+  text-decoration: none;
+}
+
+
+
+
+
 
 /***********************  FOOTER  **********************/
 
@@ -562,6 +615,66 @@ font-style: normal;
   color: hsl(0, 94%, 50%);
   transform: translateY(-2px);
 }
+/***************   no header partial   ****************/
+.landing-page-header {
+  position: fixed;
+left: 0;
+top: 0;
+width: 100%;
+font-family: "Audiowide", sans-serif;
+font-weight: 400;
+font-style: normal;
+
+  overflow: hidden;
+  display: flex; 
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3rem;
+  padding: 14px 20px;
+  background-color: #000000d5;
+  border-style: solid;
+  border-color: #7839ff8c;   
+}
+
+.landing-page-header form button {
+  color: #f4f4f4;
+  background-color: #000000d5;
+  font-family: "Audiowide", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: background-color 0.5s ease, transform 0.3s ease;
+  border-radius: 5px;
+}
+.landing-page-header form button:hover {
+  background-color: rgba(255, 255, 255, 0.2);;
+  color: hsl(0, 94%, 50%);
+  transform: translateY(-2px);
+}
+
+.flash-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.flash-message.error {
+  background-color: #ff6347; 
+}
+
+.flash-message.success {
+  background-color: #32cd32; 
+}
+
 
 .game:hover {
   transform: translateY(-5px);

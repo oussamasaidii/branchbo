@@ -8,7 +8,7 @@
         </article>
         <section class="right-login">
             <article class="card-login">
-                <form>
+                <form action="/register" method="post">
                     <article class="textfield">
                         <label for="username">Gebruikersnaam</label>
                         <input type="text" name="username" placeholder="Gebruikersnaam" required>
@@ -23,13 +23,13 @@
                     </article>
                     <article class="textfield">
                         <label for="password-repeat">Herhaal Wachtwoord</label>
-                        <input type="password" name="password-repeat" placeholder="Herhaal Wachtwoord" required>
+                        <input type="password" name="confirmPassword" placeholder="Herhaal Wachtwoord" required>
                     </article>
                     <article class="textfield"> 
                         <label for="game">Voor welke game wens je je te registreren?</label>
                         <select name="game" id="game" required>
                             <option value="fifa">Fifa - binnenkort beschikbaar</option>
-                            <option value="fortnite">Fortnite</option>
+                            <option value="Fortnite">Fortnite</option>
                             <option value="magic">Magic The Gathering - binnenkort beschikbaar</option>
                             <option value="pokemon">Pokémon - binnenkort beschikbaar</option>
                             <option value="lotr">Lord Of The Rings - binnenkort beschikbaar</option>
