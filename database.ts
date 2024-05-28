@@ -1,5 +1,5 @@
 import {Collection, MongoClient } from "mongodb";
-import { User } from "./interfaces";
+import { User, Datum, Datum2 } from "./interfaces";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 dotenv.config();
@@ -9,6 +9,8 @@ export const uri = "mongodb+srv://TiltedTowers:TiltedTowersBOM@cluster0.iwefcqe.
 export const client = new MongoClient(uri);
 
 export const usersCollection: Collection<User> = client.db("users").collection<User>("usersCollection");
+export const charactersCollection: Collection<Datum2> = client.db("characters").collection<Datum2>("charactersCollection");
+
 
 const saltRounds : number = 10;
 
@@ -67,5 +69,15 @@ export async function connect() {
         process.on("SIGINT", exit);
     } catch (error) {
         console.error(error);
+    }
+}
+
+export async function loadCharacters() {
+    try {
+        const characters = await charactersCollection.find().toArray();
+        return characters;
+    } catch (error) {
+        console.error("Error loading characters:", error);
+        throw error;
     }
 }

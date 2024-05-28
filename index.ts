@@ -8,6 +8,8 @@ import { secureMiddleware } from "./session";
 import { loginRouter } from "./routes/loginRouter";
 import { homeRouter } from "./routes/homeRouter";
 import { registrationRouter } from "./routes/registrationRouter";
+import { fetchAndSaveCharacters } from "./fetchCharacters";
+
 
 dotenv.config();
 
@@ -26,15 +28,28 @@ app.use(loginRouter());
 app.use(homeRouter());
 app.use(registrationRouter());
 
-app.listen(app.get("port"), async () => {
+(async () => {
     try {
         await connect();
-        console.log("Server started on http://localhost:" + app.get('port'));
-    } catch (e) {
-        console.log(e);
+        console.log("Connected to the database");
+
+        const apiKey = "https://fortnite-api.com/v2/cosmetics/br/search/all?type=outfit&api_key=3ca10d0e-b9d0-4dac-9940-14a45dcd9572"; 
+        if (apiKey) {
+            await fetchAndSaveCharacters();
+            console.log("Characters fetched and saved to the database");
+        } else {
+            console.error("Fortnite API key not found. Characters not fetched.");
+        }
+
+        app.listen(app.get("port"), () => {
+            console.log("Server started on http://localhost:" + app.get('port'));
+        });
+    } catch (error) {
+        console.error("Error starting the application:", error);
         process.exit(1);
     }
-});
+})();
+
 
 
 

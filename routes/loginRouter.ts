@@ -5,7 +5,7 @@ import path, { format } from "path";
 import { connect, login } from "../database";
 import session from "../session";
 import { secureMiddleware } from "../session";
-
+import { loadCharacters } from "../database";
 import { User } from "../interfaces";
 
 
@@ -55,8 +55,13 @@ export function loginRouter() {
         res.render('character_detail', { user: req.session.user });
     });
 
-    router.get('/characters', secureMiddleware, (req, res) => {
-        res.render('characters', { user: req.session.user });
+    router.get('/characters', secureMiddleware, async (req, res) => {
+        try {
+            const characters = await loadCharacters();
+            res.render("characters", { characters, user: req.session.user });
+        } catch (error) {
+            res.status(500).send("Error loading characters");
+        }
     });
 
     router.get('/favorite_characters', secureMiddleware, (req, res) => {
