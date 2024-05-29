@@ -5,8 +5,9 @@ import path, { format } from "path";
 import { connect, login } from "../database";
 import session from "../session";
 import { secureMiddleware } from "../session";
-import { loadCharacters, charactersCollection } from "../database";
+import { loadCharacters, charactersCollection, usersCollection } from "../database";
 import { User } from "../interfaces";
+
 
 
 
@@ -24,6 +25,7 @@ export function loginRouter() {
             let user: User | null = await login(email, password);
             if (user !== null) {
                 user.password = "";
+                
                 req.session.user = user;
                 res.redirect("/landing-page");
             } else {
@@ -74,7 +76,69 @@ export function loginRouter() {
         }
     });
 
+    router.post('/update-username', secureMiddleware, async (req, res) => {
+        if (req.session && req.session.user) {
+            try {
+                const userId = req.session.user._id;
+                const newUsername = req.body.username;
     
+                await usersCollection.updateOne(
+                    { _id: userId },
+                    { $set: { username: newUsername } }
+                );
+    
+                req.session.user.username = newUsername;
+    
+                res.redirect('/user-profile?message=Gebruikersnaam succesvol bijgewerkt.');
+            } catch (error) {
+                console.error("Error updating username:", error);
+                res.redirect('/user-profile?message=Fout bij het bijwerken van de gebruikersnaam.');
+            }
+        } else {
+            res.status(401).redirect('/login');
+        }
+    });
+    
+    router.post('/character/win', secureMiddleware, async (req, res) => {
+        try {
+            const { id } = req.body;
+            const character = await charactersCollection.findOne({ id: id });
+            if (character) {
+                await charactersCollection.updateOne(
+                    { id: id },
+                    { $inc: { wins: 1 } }
+                );
+                res.json({ success: true });
+            } else {
+                res.status(404).json({ success: false, message: 'Character not found' });
+            }
+        } catch (error) {
+            res.status(500).json({ success: false, message: 'Error updating wins' });
+        }
+    });
+
+    router.post('/character/loss', secureMiddleware, async (req, res) => {
+        try {
+            const { id } = req.body;
+            const character = await charactersCollection.findOne({ id: id });
+            if (character) {
+                await charactersCollection.updateOne(
+                    { id: id },
+                    { $inc: { losses: 1 } }
+                );
+                res.json({ success: true });
+            } else {
+                res.status(404).json({ success: false, message: 'Character not found' });
+            }
+        } catch (error) {
+            res.status(500).json({ success: false, message: 'Error updating losses' });
+        }
+    });
+
+
+
+
+
     router.get('/landing-page', secureMiddleware, (req, res) => {
         res.render('landing-page', { user: req.session.user });
     });
@@ -83,9 +147,20 @@ export function loginRouter() {
         res.render('homepage_fortnite', { user: req.session.user });
     });
 
-    router.get('/blacklist_detail', secureMiddleware, (req, res) => {
-        res.render('blacklist_detail', { user: req.session.user });
+    router.get('/blacklist_detail/:id', secureMiddleware, async (req, res) => {
+        try {
+            const characterId = req.params.id;
+            const character = await charactersCollection.findOne({ id: characterId });
+            if (character && character.isBlacklisted) {
+                res.render('blacklist_detail', { character, user: req.session.user });
+            } else {
+                res.status(404).send('Blacklisted character not found or not marked as blacklisted.');
+            }
+        } catch (error) {
+            res.status(500).send('Error loading blacklisted character details');
+        }
     });
+    
 
     router.get('/blacklisted_characters', secureMiddleware, async (req, res) => {
         try {
@@ -109,6 +184,7 @@ export function loginRouter() {
             res.status(500).send('Error loading character details');
         }
     });
+    
 
     router.get('/characters', secureMiddleware, async (req, res) => {
         try {
@@ -127,13 +203,42 @@ export function loginRouter() {
             res.status(500).send("Error loading favorite characters");
         }
     });
-    
-    router.get('/favorite_detail', secureMiddleware, (req, res) => {
-        res.render('favorite_detail', { user: req.session.user });
+
+    router.get('/favorite_detail/:id', secureMiddleware, async (req, res) => {
+        try {
+            const characterId = req.params.id;
+            const character = await charactersCollection.findOne({ id: characterId });
+            if (character && character.isFavortite) {
+                res.render('favorite_detail', { character, user: req.session.user });
+            } else {
+                res.status(404).send('Favorite character not found or not marked as favorite.');
+            }
+        } catch (error) {
+            res.status(500).send('Error loading favorite character details');
+        }
     });
+    
+    
+    // router.get('/favorite_detail/:id', secureMiddleware, async (req, res) => {
+    //     try {
+    //         const characterId = req.params.id;
+    //         const character = await charactersCollection.findOne({ id: characterId, isFavortite: true });
+    //         if (character) {
+    //             res.render('favorite_detail', { character, user: req.session.user });
+    //         } else {
+    //             res.status(404).send('Favorite character not found');
+    //         }
+    //     } catch (error) {
+    //         res.status(500).send('Error loading favorite character details');
+    //     }
+    // });
 
     router.get('/user-profile', secureMiddleware, (req, res) => {
-        res.render('user-profile', { user: req.session.user });
+        if (req.session && req.session.user) {
+            res.render('user-profile', { user: req.session.user, message: req.query.message });
+        } else {
+            res.redirect('/login');
+        }
     });
 
     router.get('/registration', async (req, res) => {

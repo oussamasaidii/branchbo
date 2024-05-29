@@ -20,8 +20,8 @@
                     </p>
                 </a>
                 <div class="hover-buttons">
-                    <button class="favorite-button"><i class='far fa-plus-square'></i> <%= character.isFavortite ? 'Unfavorite' : 'Favorite' %></button>
-                    <button class="blacklist-button"><i class='far fa-minus-square'></i> <%= character.isBlacklisted ? 'Unblacklist' : 'Blacklist' %></button>
+                    <button class="favorite-button"><i class="far fa-star"></i> <%= character.isFavortite ? 'Unfavorite' : 'Favorite' %></button>
+                    <button class="blacklist-button"><i class="fas fa-times-circle"></i> <%= character.isBlacklisted ? 'Unblacklist' : 'Blacklist' %></button>
                 </div>
             </article>
         <% }); %>

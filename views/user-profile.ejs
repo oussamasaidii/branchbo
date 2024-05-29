@@ -3,13 +3,20 @@
 <main>
     <section class="profile-container">
         <article class="profile-pic">
-        <button class="action-button"><i class="fa fa-edit"></i></button>
-    </article>
+            <img src="" alt="Profiel Foto">
+            <button class="action-button"><i class="fa fa-edit"></i></button>
+        </article>
     
-        <h1 class="username">Naam gebruiker</h1>
+        <h1 class="username"><%= user.username %></h1>
+
         <article class="username-change">
-            <input type="text" id="Nieuwe Gebruikersnaam" placeholder="Nieuwe Gebruikersnaam">
-            <button onclick="changeUsername()">Bevestigen</button>
+            <% if (locals.message) { %>
+                <p class="message"><%= locals.message %></p>
+            <% } %>
+            <form action="/update-username" method="POST">
+                <input type="text" name="username" id="NieuweGebruikersnaam" placeholder="Nieuwe Gebruikersnaam">
+                <button type="submit">Bevestigen</button>
+            </form>
         </article>
     </section>
 </main>

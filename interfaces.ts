@@ -6,6 +6,7 @@ export interface User {
     email: string;
     password: string;
     game: string;
+    
 }
 
 export interface Datum {

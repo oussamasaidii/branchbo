@@ -10,7 +10,6 @@ import { homeRouter } from "./routes/homeRouter";
 import { registrationRouter } from "./routes/registrationRouter";
 import { fetchAndSaveCharacters } from "./fetchCharacters";
 
-
 dotenv.config();
 
 const app: Express = express();

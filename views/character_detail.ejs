@@ -15,9 +15,51 @@
         <article class="action-buttons">
             <button class="favorite-button"><i class="far fa-star"></i> <%= character.isFavortite ? 'Unfavorite' : 'Favorite' %></button>
             <button class="blacklist-button"><i class="fas fa-times-circle"></i> <%= character.isBlacklisted ? 'Unblacklist' : 'Blacklist' %></button>
-            <button class="profile-button"><i class="fa fa-user"></i>Profielfoto instellen</button>
+        <button class="profile-button"><i class="fa fa-user"></i> Profielfoto instellen</button>
         </article>
     </section>
 </main>
+
+<script>
+    const characterId = '<%= character.id %>'; // Gebruik de server-side gegenereerde ID direct
+
+    document.querySelector('.favorite-button').addEventListener('click', async (e) => {
+        e.preventDefault();
+        const isFavorite = e.target.textContent.includes('Unfavorite');
+        const response = await fetch(`/character/favorite`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: characterId }),
+        });
+        const result = await response.json();
+        if (result.success) {
+            e.target.innerHTML = isFavorite ? '<i class="far fa-star"></i> Favorite' : '<i class="far fa-star"></i> Unfavorite';
+        } else {
+            alert('Something went wrong!');
+        }
+    });
+
+    document.querySelector('.blacklist-button').addEventListener('click', async (e) => {
+        e.preventDefault();
+        const isBlacklisted = e.target.textContent.includes('Unblacklist');
+        const response = await fetch(`/character/blacklist`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: characterId }),
+        });
+        const result = await response.json();
+        if (result.success) {
+            e.target.innerHTML = isBlacklisted ? '<i class="fas fa-times-circle"></i> Blacklist' : '<i class="fas fa-times-circle"></i> Unblacklist';
+        } else {
+            alert('Something went wrong!');
+        }
+    });
+</script>
+
+
 
 <%- include('partials/footer') %>

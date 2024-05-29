@@ -94,6 +94,26 @@ margin-left: auto;
 
 }
 
+.profile-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #8bc6eb;
+}
+
+.profile-link .profile-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-link span {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 1.2rem;
+}
+
 /***********************  FOOTER  **********************/
 
 footer {
@@ -139,30 +159,53 @@ text-decoration: none;
 text-decoration: underline;
 }
 
-/*************************  My-ProfilePage  *******************************/
+/*************************  user-ProfilePage  *******************************/
 .profile-container {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  margin-top: 50px;
+
 }
 
 .profile-pic {
-width: 150px;
-height: 150px;
-border-radius: 50%;
-background: url('/project/Images/Default-Skin.webp') no-repeat center center; 
-background-size: cover;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.profile-pic:hover {
-border-color: white;
-border-style: solid;
-transform: scale(1.1);
-transition: background-color 0.5s ease, transform 0.3s ease;
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
 
+.profile-pic:hover img {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
 
+.profile-pic button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .username {
@@ -226,6 +269,24 @@ background-color: white;
 color: #001a67;
 border-radius: 5px;
 }
+
+.message {
+  color: green;
+  background-color: white;
+  font-size: large;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.error {
+  color: red;
+  background-color: white;
+  font-size: large;
+
+}
+
+
 
 /************************ Character Page  *************************/
 /* .characters-main-section {
@@ -302,7 +363,7 @@ border-radius: 5px;
   opacity: 1; /* Verander alleen de zichtbaarheid */
 }
 
-button.favorite-button, button.blacklist-button {
+button.favorite-button, button.blacklist-button, button.remove-blacklist-button {
   padding: 10px 20px;
   font-size: 16px;
   font-weight: 100;
@@ -1194,6 +1255,9 @@ button.profile-button:hover {
   background-color: #45a049;
   color: white;
 }
+
+
+
 
 
 

@@ -1,28 +1,44 @@
-<%- include('partials/header_fortnite')  %>
-
 <main>
-    <section>
-<article class="container">
-    <article class="product">
-        <article class="product-info-blacklist">
-            <article class="product-title-blacklist">Chun-Li</article>
-            <article class="product-description-blacklist">
-                <p>Chun-Li is een bekend personage uit het Street Fighter-universum en is als gastpersonage toegevoegd aan Fortnite.</p>
-                <p class="blacklistreason">Reden: Personage trekt op niks!</p>
+    <section class="character-container-detail">
+        <figure class="character-image">
+            <img src="<%= character.images.icon %>" alt="<%= character.name %>">
+            <figcaption><p>&copy;Epic Games</p></figcaption>
+        </figure>
+        <article class="character-info">
+            <article class="product-title"><%= character.name %></article>
+            <article class="product-description">
+                <p><%= character.description %></p>
             </article>
         </article>
-        <article class="Blacklist-Img">
-            <img src="./assets/Images/fortnite-outfit-Chun-Li-2.webp" alt="Chun-Li">
+        <article class="action-buttons">
+            <button class="remove-blacklist-button" onclick="removeFromBlacklist('<%= character.id %>')"><i class="fas fa-ban"></i> Verwijder van Blacklist</button>
         </article>
-    </article>
-
-    <article class="action-buttons-blacklist">
-        <button class="action-button"><i class="fa fa-edit"></i> Aanpassen</button>
-        <button class="action-button-delete"><i class="fa fa-trash"></i> Verwijderen</button>
-
-    </article>
-</article>
-</section>
+    </section>
 </main>
 
-<%- include('partials/footer')  %>
+<script>
+function removeFromBlacklist(characterId) {
+    if (confirm('Weet je zeker dat je dit personage wilt verwijderen van de blacklist?')) {
+        fetch(`/character/removeFromBlacklist`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: characterId }),
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                alert('Personage verwijderd van blacklist!');
+                window.location.href = '/blacklisted_characters';  // Pas dit aan naar de juiste route waar de gebruiker naartoe moet gaan
+            } else {
+                alert('Er ging iets mis bij het verwijderen!');
+            }
+        })
+        .catch(error => {
+            console.error('Fout bij het verwijderen van het karakter van de blacklist:', error);
+            alert('Er ging iets mis bij het verwijderen!');
+        });
+    }
+}
+</script>

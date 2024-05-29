@@ -10,19 +10,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
-    <!--<script src="./Js/Nav.js"></script>-->
     <script src="/public/Js/characters.js"></script>
     <script src="/public/Js/items.js"></script>
     <script src="/public/Js/LP-.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-
-
-
-    <!--Audiowide Font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
@@ -30,86 +24,35 @@
         <img src="/assets/Images/bg2.png" alt="background">
     </section>
     <header>
-        <nav>
-            <article class="nav-left">
-
-            <a href="homepage_fortnite" class="nav-link">
-                <span>Home</span>
-                <img src='/assets/Images/HomeIcon-Nav.png' style='display: none;'/>
+        <nav class="topnav">
+            <article class="logoutbtn">
+                <form action="/logout" method="POST">
+                    <button type="submit">Uitloggen</button>
+                </form>
+            </article>
+            <article id="myLinks">
+                <a href="/homepage_fortnite">Home</a>
+                <a href="/characters">Personages</a>
+                <a href="/favorite_characters">Favorieten</a>
+                <a href="/blacklisted_characters">Blacklisted</a>
+                <a href="/user-profile" class="nav-link profile-link">
+                    <img src="" alt="Profiel Foto" class="profile-icon"/>
+                    <span><%= user.username %></span>
+                </a>
+            </article>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
             </a>
-            <a href="characters" class="nav-link">
-                <span>Personages</span>
-                <img src='/assets/Images/CharacterIcon-Nav.png' style='display: none;'/>
-            </a>
-            <a href="favorite_characters" class="nav-link">
-                <span>Favorieten</span>
-                <img src='/assets/Images/FavoriteIcon-Nav.png' style='display: none;'/>
-            </a>
-            <a href="blacklisted_characters" class="nav-link">
-                <span>Blacklisted</span>
-                <img src='/assets/Images/BlackListIcon-Nav.png' style='display: none;'/>
-            </a>
-        </article>
-        <article class="nav-right">
-            <a href="user-profile" class="nav-link">
-                <span>Mijn Profiel</span>
-                <img src='/assets/Images/UserProfileLogo-Nav.jpg' style='display: none;'/>
-            </a>
-            <form action="/logout" method="POST">
-                <button type="submit">Uitloggen</button><!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Tilted Towers</title>
-                    <link rel="stylesheet" href="./css/reset.css">
-                    <link rel="stylesheet" href="./css/style.css">
-                    <link rel="preconnect" href="https://fonts.googleapis.com">
-                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-                    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
-                    <!--<script src="./Js/Nav.js"></script>-->
-                    <script src="./Js/characters.js"></script>
-                    <script src="./Js/items.js"></script>
-                    <script src="./Js/LP-.js"></script>
-                
-                
-                    <!--Audiowide Font-->
-                    <link rel="preconnect" href="https://fonts.googleapis.com">
-                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-                    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                
-                </head>
-                
-                <body>
-                    <header>
-                        <nav class="topnav">
-                            <article class="logoutbtn"><form action="/logout" method="POST">
-                                <button type="submit">Uitloggen</button></form></article>
-                            <article id="myLinks"></form>
-                                <a href="/homepage_fortnite">Home</a>
-                            <a href="/characters">Personages</a>
-                            <a href="/favorite_characters">Favorieten</a>
-                            <a href="/blacklisted_characters">Blacklisted</a>
-                            <a href="/user-profile">Mijn Profiel</a>
-                        </article>
-                            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                                <i class="fa fa-bars"></i>
-                              </a>
-                        </nav>
-                    </header>
-                    <body>
-                    <script>
-                        function myFunction() {
-                          var x = document.getElementById("myLinks");
-                          if (x.style.display === "block") {
-                            x.style.display = "none";
-                          } else {
-                            x.style.display = "block";
-                          }
-                        }
-                        </script>
-                    </body>
-        </article>
         </nav>
     </header>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myLinks");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
+

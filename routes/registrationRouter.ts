@@ -32,7 +32,8 @@ router.post("/register", async (req: Request, res: Response) => {
             username,
             email,
             password: hashedPassword,
-            game
+            game,
+            
         };
 
         const insertionResult = await usersCollection.insertOne(newUser);

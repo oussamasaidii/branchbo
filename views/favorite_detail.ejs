@@ -1,33 +1,97 @@
-<%- include('partials/header_fortnite')  %>
+<%- include('partials/header_fortnite') %>
 
 <main>
-    <section>
-<article class="container">
-    <article class="product">
-        <article class="product-info">
+    <section class="character-container-detail">
+        <figure class="character-image">
+            <img src="<%= character.images.icon %>" alt="<%= character.name %>">
+            <figcaption><p>&copy;Epic Games</p></figcaption>
+        </figure>
+        <article class="character-info">
+            <article class="product-title"><%= character.name %></article>
             <article class="product-description">
-                <article class="product-title">Agent Peely</article>
-                <p>Peely is een geliefd personage in de Fortnite-lore, bekend om zijn vrolijke humeur en kenmerkende verschijning als een menselijke banaan. Hoewel Peely zelf geen uitgebreide achtergrond heeft, is hij te zien geweest in verschillende avonturen en gebeurtenissen binnen het Fortnite-universum.</p>
-            </article>
-            <h2>Items:</h2>
-            <article class="Items">
-                <img src="./assets/Images/Questionmark.png" alt="Item1">
-                <img src="./assets/Images/Rage.webp" alt="Item2">
-                <button class="action-button"><i class="fa fa-edit"></i> Edit</button>
+                <p><%= character.description %></p>
             </article>
         </article>
-        <article class="Favo-Img">
-            <img src="./assets/Images/fortnite-outfit-agent-peely.webp" alt="Agent Peely">
+        <article class="action-buttons">
+            <button class="wins-button"><i class="fas fa-trophy"></i> Wins: <%= character.wins %></button>
+            <button class="losses-button"><i class="fas fa-thumbs-down"></i> Losses: <%= character.losses %></over>
         </article>
-    </article>
-
-    <article class="action-buttons">
-        <button class="action-button"><i class="fa fa-trophy"></i> Gewonnen: 3</button>
-        <button class="action-button"><i class="fa fa-thumbs-o-down"></i> Verloren: 1</button>
-        <button class="action-button-delete"><i class="fa fa-trash"></i> Verwijderen</button>
-    </article>
-</article>
-</section>
+    </section>
 </main>
 
-<%- include('partials/footer')  %>
+<script>
+document.querySelector('.favorite-button').addEventListener('click', async (e) => {
+        e.preventDefault();
+        const characterId = '<%= character.id %>';
+        const response = await fetch(`/character/favorite`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: characterId }),
+        });
+        const result = await response.json();
+        if (result.success) {
+            location.reload();
+        } else {
+            alert('Something went wrong!');
+        }
+    });
+
+    document.querySelector('.blacklist-button').addEventListener('click', async (e) => {
+        e.preventDefault();
+        const characterId = '<%= character.id %>';
+        const response = await fetch(`/character/blacklist`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: characterQuId }),
+        });
+        const result = await response.json();
+        if (result.success) {
+            location.reload();
+        } else {
+            alert('Something went wrong!');
+        }
+    });
+
+    document.querySelector('.wins-button').addEventListener('click', async (e) => {
+        e.preventDefault();
+        const characterId = '<%= character.id %>';
+        const response = await fetch(`/character/win`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: characterId }),
+        });
+        const result = await response.json();
+        if (result.success) {
+            location.reload();  
+        } else {
+            alert('Something went wrong!');
+        }
+    });
+
+    document.querySelector('.losses-button').addEventListener('click', async (e) => {
+        e.preventDefault();
+        const characterId = '<%= character.id %>';
+        const response = await fetch(`/character/loss`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: characterId }),
+        });
+        const result = await response.json();
+        if (result.success) {
+            location.reload();  
+        } else {
+            alert('Something went wrong!');
+        }
+    });
+</script>
+
+
+<%- include('partials/footer') %>
