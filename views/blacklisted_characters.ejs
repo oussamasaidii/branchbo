@@ -1,25 +1,67 @@
-<%- include('partials/header_fortnite') %>
+<%- include('partials/header_fortnite')  %>
 
-<main>
-    <h1>Geblackliste personages</h1>
-    <article class="blacklist-container">
-        <article class="blacklist-character">
-            <a href="blacklist_detail">
-            <img src="./assets/Images/Skin7.jpg" alt="Character 1">
-            <p><a href="blacklist_detail">Character 1</a></p>
-        </a>
-        </article>
-        <article class="blacklist-character">
-            <a href="blacklist_detail">
-            <img src="./assets/Images/Skin8.jpg" alt="Character 2">
-            <p><a href="blacklist_detail">Character 2</a></p>
-        </a>
-        </article>
-        <article class="blacklist-character">
-            <a href="blacklist_detail">
-            <img src="./assets/Images/Skin9.jpg" alt="Character 3">
-            <p><a href="blacklist_detail">Character 3</a></p>
-        </a>
+<main class="characters-main-section">
+    <h1 id="characters-title">Geblackliste Personages</h1>
+    <article class="character-container">
+        <% characters.forEach(character => { %>
+            <article class="character" data-id="<%= character.id %>">
+                <a href="/character_detail/<%= character.id %>">
+                    <img src="<%= character.images.icon %>" alt="<%= character.name %>">
+                    <p>
+                        <%= character.name %>
+                    </p>
+                </a>
+                <div class="hover-buttons">
+                    <button class="favorite-button"><%= character.isFavortite ? 'Unfavorite' : 'Favorite' %></button>
+                    <button class="blacklist-button"><%= character.isBlacklisted ? 'Unblacklist' : 'Blacklist' %></button>
+                </div>
+            </article>
+        <% }); %>
+    </article>
 </main>
+
+<script>
+    document.querySelectorAll('.favorite-button').forEach(button => {
+        button.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const characterId = button.closest('.character').dataset.id;
+            const action = button.textContent.trim().toLowerCase() === 'favorite' ? 'favorite' : 'unfavorite';
+            const response = await fetch(`/character/favorite`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: characterId }),
+            });
+            const result = await response.json();
+            if (result.success) {
+                button.textContent = action === 'favorite' ? 'Unfavorite' : 'Favorite';
+            } else {
+                alert('Something went wrong!');
+            }
+        });
+    });
+
+    document.querySelectorAll('.blacklist-button').forEach(button => {
+        button.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const characterId = button.closest('.character').dataset.id;
+            const action = button.textContent.trim().toLowerCase() === 'blacklist' ? 'blacklist' : 'unblacklist';
+            const response = await fetch(`/character/blacklist`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: characterId }),
+            });
+            const result = await response.json();
+            if (result.success) {
+                button.textContent = action === 'blacklist' ? 'Unblacklist' : 'Blacklist';
+            } else {
+                alert('Something went wrong!');
+            }
+        });
+    });
+</script>
 
 <%- include('partials/footer') %>

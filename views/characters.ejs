@@ -1,26 +1,76 @@
-<%- include('partials/header_fortnite')  %>
+<%- include('partials/header_fortnite') %>
 
 <main class="characters-main-section">
     <h1 id="characters-title">Personages</h1>
     <article class="search-container">
-        <input type="text" placeholder="Zoeken..." name="search">
-        <button type="submit">
-            <img src="./assets/Images/SearchIcon-SB.png" alt="Search Icon">
-        </button>
+        <form action="/search" method="GET">
+            <input type="text" placeholder="Zoeken..." name="search">
+            <button type="submit">
+                <img src="./assets/Images/SearchIcon-SB.png" alt="Search Icon">
+            </button>
+        </form>
     </article>
     <article class="character-container">
         <% characters.forEach(character => { %>
-            <article class="character">
-                <a href="character_detail">
+            <article class="character" data-id="<%= character.id %>">
+                <a href="/character_detail/<%= character.id %>">
                     <img src="<%= character.images.icon %>" alt="<%= character.name %>">
                     <p>
                         <%= character.name %>
                     </p>
                 </a>
+                <div class="hover-buttons">
+                    <button class="favorite-button"><i class='far fa-plus-square'></i> <%= character.isFavortite ? 'Unfavorite' : 'Favorite' %></button>
+                    <button class="blacklist-button"><i class='far fa-minus-square'></i> <%= character.isBlacklisted ? 'Unblacklist' : 'Blacklist' %></button>
+                </div>
             </article>
         <% }); %>
     </article>
 </main>
 
+
+<script>
+    document.querySelectorAll('.favorite-button').forEach(button => {
+        button.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const characterId = button.closest('.character').dataset.id;
+            const action = button.textContent.trim().toLowerCase() === 'favorite' ? 'favorite' : 'unfavorite';
+            const response = await fetch(`/character/favorite`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: characterId }),
+            });
+            const result = await response.json();
+            if (result.success) {
+                button.textContent = action === 'favorite' ? 'Unfavorite' : 'Favorite';
+            } else {
+                alert('Something went wrong!');
+            }
+        });
+    });
+
+    document.querySelectorAll('.blacklist-button').forEach(button => {
+        button.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const characterId = button.closest('.character').dataset.id;
+            const action = button.textContent.trim().toLowerCase() === 'blacklist' ? 'blacklist' : 'unblacklist';
+            const response = await fetch(`/character/blacklist`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: characterId }),
+            });
+            const result = await response.json();
+            if (result.success) {
+                button.textContent = action === 'blacklist' ? 'Unblacklist' : 'Blacklist';
+            } else {
+                alert('Something went wrong!');
+            }
+        });
+    });
+</script>
 
 <%- include('partials/footer') %>

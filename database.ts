@@ -1,5 +1,5 @@
 import {Collection, MongoClient } from "mongodb";
-import { User, Datum, Datum2 } from "./interfaces";
+import { User, Datum, Datum2} from "./interfaces";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 dotenv.config();

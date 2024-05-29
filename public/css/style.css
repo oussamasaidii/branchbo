@@ -251,50 +251,90 @@ border-radius: 5px;
 }
 
 .character img, .favorites-character img, .blacklist-character img {
-width: 100%;
-height: auto;
-border-radius: 12px;
-}
-
-.character, .favorites-character, .blacklist-character{
   width: 100%;
+  height: auto;
+  border-radius: 12px;
 }
+
+.character, .favorites-character, .blacklist-character {
+  width: 100%;
+  position: relative; /* Zorgt ervoor dat de absolute positionering van de knoppen binnen het element blijft */
+}
+
 .character img:hover, .favorites-character img:hover, .blacklist-character img:hover {
-transform: scale(1.1);
-border: 5px white solid;
-transition:  0.3s ease;
+  transform: scale(1.1);
+  border: 5px white solid;
+  transition: 0.3s ease;
 }
 
-.character p, .favorites-character p, .blacklist-character p{
-color: white;
-text-align: center;
-padding: 14px 20px;
-text-decoration: none;
-transition: background-color 0.5s ease;
-font-family: "Luckiest Guy", cursive;
-font-style: italic; 
-font-size: 1.2rem;
-margin-bottom: 20px;
+.character p, .favorites-character p, .blacklist-character p {
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  transition: background-color 0.5s ease;
+  font-family: "Luckiest Guy", cursive;
+  font-style: italic; 
+  font-size: 1.2rem;
+  margin-bottom: 20px;
 }
 
-.action-button-star:hover{
-transition: background-color 0.3s ease;
-background-color: yellow;
-color: black;
+.hover-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  position: absolute; /* Plaats de knoppen absoluut */
+  bottom: 10px; /* Zorgt ervoor dat de knoppen aan de onderkant van het karakter zijn */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
-.action-button-star{
-margin-bottom: 10px;
-padding: 10px 20px;
-font-size: 16px;
-font-weight: 100;
-border: none;
-border-radius: 12px;
-background-color: rgb(255, 234, 0);
-color: black;
-cursor: pointer;
-font-family: "Luckiest Guy";
+.character {
+  padding-bottom: 50px; /* Reserver ruimte voor de knoppen */
 }
+
+.character:hover .hover-buttons {
+  opacity: 1; /* Verander alleen de zichtbaarheid */
+}
+
+button.favorite-button, button.blacklist-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 100;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: "Luckiest Guy";
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+button.favorite-button {
+  background-color: rgb(255, 234, 0);
+  color: black;
+}
+
+button.favorite-button:hover {
+  background-color: yellow;
+  color: black;
+}
+
+button.blacklist-button {
+  background-color: #f44336;
+  color: white;
+}
+
+button.blacklist-button:hover {
+  background-color: #d32f2f;
+  color: white;
+}
+
 
 
 /**************************** Favoriete personages  *****************************/
@@ -940,35 +980,38 @@ color: hsl(0, 94%, 50%);
   margin-bottom: 20px;
 }
 
-.search-container > input {
+.search-container form {
+  display: flex;
+  align-items: center;
+}
+
+.search-container input[type="text"] {
   padding: 10px;
   font-size: 17px;
   border: none;
   background: #f3f3f3;
-  width: 30%; 
-  border-radius: 5px;
-  margin-left: 30px;
+  width: 300px; 
+  border-radius: 5px 0 0 5px; 
 }
 
-.search-container > button {
-  position: relative;
-  right: 0px;
+.search-container button {
   width: 40px;
   height: 40px;
   border: none;
   background: #8bc6eb;
   color: #001a67;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 0 5px 5px 0; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.search-container > button > i {
-  font-size: 20px;
+.search-container button img {
+  width: 20px;
+  height: 20px;
 }
-.search-container > button > img {
-width: 20px; 
-height: 20px; 
-}
+
 
 /**************************   Nieuwe startpagina   *******************************/
 #index-container {
@@ -1032,19 +1075,129 @@ height: 20px;
   padding: 14px 20px;
   text-decoration: none;
   transition: background-color 0.5s ease;
-  font-family: "Luckiest Guy", cursive;
+  font-family: "Audiowide", sans-serif;
   font-style: italic; 
   font-size: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
+  border-radius: 20px;
 }
 .logoutbtn button:hover {
   background-color:rgb(225, 0, 0);
-color: white;
-border-radius: 5px;
+  color: white;
 }
+
+
+/*****************   character detail pagina   **************/
+/* Globale stijl voor de container */
+.character-container-detail {
+  margin: 20px auto;
+  margin-top: 4%;
+  max-width: 800px;
+  text-align: center; /* Center de tekst en inhoud */
+}
+
+/* Stijlen voor het productgedeelte */
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.product-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-description {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Stijlen voor de afbeelding en het onderschrift */
+figure {
+  margin: 0;
+  text-align: center;
+}
+
+figure img {
+  width: 300px; /* Stel de breedte in op 512px */
+  height: 300px; /* Stel de hoogte in op 512px */
+  border-radius: 8px;
+  object-fit: cover; /* Zorg ervoor dat de afbeelding netjes binnen de container past */
+}
+
+figcaption p {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Stijlen voor de actieknoppen */
+.action-buttons {
+  display: flex;
+  justify-content: center; /* Zorgt ervoor dat de knoppen gecentreerd zijn */
+  gap: 20px;
+  margin-top: 20px;
+  flex-direction: column;
+
+}
+
+button.favorite-button, button.blacklist-button, button.profile-button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+}
+
+button.favorite-button {
+  background-color: rgb(255, 234, 0);
+  color: black;
+}
+
+button.favorite-button:hover {
+  background-color: yellow;
+  color: black;
+}
+
+button.blacklist-button {
+  background-color: #f44336;
+  color: white;
+}
+
+button.blacklist-button:hover {
+  background-color: #d32f2f;
+  color: white;
+}
+
+button.profile-button {
+  background-color: #4caf50;
+  color: white;
+  font-family: "Luckiest Guy", cursive;
+
+}
+
+button.profile-button:hover {
+  background-color: #45a049;
+  color: white;
+}
+
+
+
+
 
 /*************  Media Queries **************/
 

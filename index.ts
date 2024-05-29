@@ -36,9 +36,9 @@ app.use(registrationRouter());
         const apiKey = "https://fortnite-api.com/v2/cosmetics/br/search/all?type=outfit&api_key=3ca10d0e-b9d0-4dac-9940-14a45dcd9572"; 
         if (apiKey) {
             await fetchAndSaveCharacters();
-            console.log("Characters fetched and saved to the database");
+            console.log("Characters and items fetched and saved to the database");
         } else {
-            console.error("Fortnite API key not found. Characters not fetched.");
+            console.error("Fortnite API key not found. Characters and items not fetched.");
         }
 
         app.listen(app.get("port"), () => {

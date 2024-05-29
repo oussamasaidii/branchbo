@@ -340,3 +340,46 @@ export interface Option {
     unlockRequirements?: string;
 }
 
+// export interface Item {
+//     id:                   string;
+//     name:                 string;
+//     description:          string;
+//     type:                 Rarity;
+//     rarity:               Rarity;
+//     series:               Series | null;
+//     set:                  Set | null;
+//     introduction:         Introduction;
+//     images:               ItemImages;
+//     variants:             Variant[] | null;
+//     builtInEmoteIds?:     string[];
+//     searchTags:           null;
+//     gameplayTags:         string[];
+//     metaTags:             string[] | null;
+//     showcaseVideo:        null | string;
+//     dynamicPakId:         null | string;
+//     displayAssetPath:     null | string;
+//     definitionPath:       null | string;
+//     path:                 string;
+//     added:                Date;
+//     shopHistory:          Date[];
+//     itemPreviewHeroPath?: string;
+// }
+
+// export interface ItemImages {
+//     smallIcon: string;
+//     icon:      string;
+//     featured:  null | string;
+//     lego:      Lego | null;
+//     other:     Other | null;
+// }
+
+// export interface Banner {
+//     value:        string;
+//     intensity:    Intensity;
+//     backendValue: string;
+// }
+
+// export enum Intensity {
+//     High = "High",
+//     Low = "Low",
+// }
