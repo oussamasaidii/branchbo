@@ -51,12 +51,13 @@ z-index: 1;
 .nav-left {
 margin-left: 75px;
 display: flex;
-gap: 3rem;
+gap: 1rem;
 }
 
 .nav-right {
 display: flex;
-gap: 3rem;
+gap: 1rem;
+margin-right: 75px;
 }
 
 nav a {
@@ -92,62 +93,6 @@ nav a:last-child {
 margin-left: auto; 
 
 }
-/**************************   Nieuwe startpagina   *******************************/
-#index-container {
-  height: 50vh;
-}
-
-#login-register-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30vh;
-}
-
-#index-header {
-  font-family: "Audiowide", sans-serif;
-  font-size: 40px;
-}
-
-#buttons-container {
-  display: flex;
-  flex-direction: column; 
-  align-items: center;
-  margin: 30px; 
-}
-
-#login-btn,
-#register-btn {
-  text-decoration: none;
-  padding: 15px 40px;
-  margin-bottom: 10px; 
-  border-radius: 30px;
-  border: none;
-  font-family: "Audiowide", sans-serif;
-  font-size: 1.2em;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-  background-color: #5148699a;
-  color: white;
-}
-
-#login-btn:hover,
-#register-btn:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: hsl(0, 94%, 50%);
-}
-
-#buttons-container p {
-  color: white; 
-  font-family: "Audiowide", sans-serif; 
-}
-.registration-link {
-  text-decoration: none;
-}
-
-
-
-
 
 /***********************  FOOTER  **********************/
 
@@ -207,7 +152,7 @@ margin-top: 6rem;
 width: 150px;
 height: 150px;
 border-radius: 50%;
-background: url('./assets/Images/Default-Skin.webp') no-repeat center center; 
+background: url('/project/Images/Default-Skin.webp') no-repeat center center; 
 background-size: cover;
 }
 
@@ -289,38 +234,39 @@ border-radius: 5px;
 
 
 #characters-title {
+  font-size: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.character-container {
+.character-container, .favorites-container, .blacklist-container {
   margin-top: 3%;
   margin-left: 10%;
   margin-right: 10%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
-  gap: 1%;
+  gap: 1rem;
   place-items: center;
 }
 
-.character img {
+.character img, .favorites-character img, .blacklist-character img {
 width: 100%;
 height: auto;
 border-radius: 12px;
 }
 
-.character{
+.character, .favorites-character, .blacklist-character{
   width: 100%;
 }
-.character img:hover {
+.character img:hover, .favorites-character img:hover, .blacklist-character img:hover {
 transform: scale(1.1);
 border: 5px white solid;
 transition:  0.3s ease;
 }
 
-.character p {
-color:  #8bc6eb;
+.character p, .favorites-character p, .blacklist-character p{
+color: white;
 text-align: center;
 padding: 14px 20px;
 text-decoration: none;
@@ -358,31 +304,31 @@ color: white;
 font-family: "Luckiest Guy";
 text-align: center;
 font-style: italic;
-font-weight: 100;
+font-size: 2rem;
 margin-top: 10%;
 }
-.favorite_characters {
+/*.favorite_characters {
 display: grid;
 grid-template-columns: 1fr 1fr 1fr 1fr;
 gap: 20px;
 max-width: 1200px;
 justify-content: center;
 margin: auto;
-}
+}*/
 
-.item {
+/*.item {
 padding: 20px;
 text-align: center;
 color: white;
-}
+}*/
 
-.item img {
+/*.item img {
 max-width: 100%;
 height: auto;
 border-radius: 20px;
 margin-bottom: 10px;
-}
-.item a,.character a {
+}*/
+/*.item a,.character a {
 color: white;
 text-decoration: none;
 font-family: "Luckiest Guy";
@@ -397,7 +343,7 @@ transition: border-color 0.3s ease;
 border-color: white;
 transform: scale(1.1); 
 transition:  0.3s ease; 
-}
+}*/
 h3{
 text-decoration: none;
 }
@@ -438,11 +384,13 @@ flex-direction:row-reverse;
 
 }
 
-.product figure img,.Blacklist-img img{
-width: 100%;
+.Blacklist-Img img, .Favo-Img img{
+width: 350px;
+height: 350px;
 margin-right: 2%;
 border-radius: 12px;
 }
+
 
 .product-info,.product-info-blaclist {
 margin-left: 2%;
@@ -618,66 +566,6 @@ font-style: normal;
   color: hsl(0, 94%, 50%);
   transform: translateY(-2px);
 }
-/***************   no header partial   ****************/
-.landing-page-header {
-  position: fixed;
-left: 0;
-top: 0;
-width: 100%;
-font-family: "Audiowide", sans-serif;
-font-weight: 400;
-font-style: normal;
-
-  overflow: hidden;
-  display: flex; 
-  align-items: center;
-  justify-content: flex-end;
-  gap: 3rem;
-  padding: 14px 20px;
-  background-color: #000000d5;
-  border-style: solid;
-  border-color: #7839ff8c;   
-}
-
-.landing-page-header form button {
-  color: #f4f4f4;
-  background-color: #000000d5;
-  font-family: "Audiowide", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  transition: background-color 0.5s ease, transform 0.3s ease;
-  border-radius: 5px;
-}
-.landing-page-header form button:hover {
-  background-color: rgba(255, 255, 255, 0.2);;
-  color: hsl(0, 94%, 50%);
-  transform: translateY(-2px);
-}
-
-.flash-message {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.flash-message.error {
-  background-color: #ff6347; 
-}
-
-.flash-message.success {
-  background-color: #32cd32; 
-}
-
 
 .game:hover {
   transform: translateY(-5px);
@@ -707,7 +595,6 @@ overflow: hidden;
 transition: transform 0.3s ease, box-shadow 0.3s ease; 
 border-radius: 10%;
 cursor: pointer;
-
 }
 
 .game article {
@@ -817,13 +704,11 @@ padding: 5px;
 text-align: center;
 }
 
-
 .photo-title {
 font-size: 20px; 
 margin-top: 10px;
 font-weight: 500; 
 }
-
 .photo-description {
 margin: 10px;
 font-weight: 100; 
@@ -1085,6 +970,81 @@ width: 20px;
 height: 20px; 
 }
 
+/**************************   Nieuwe startpagina   *******************************/
+#index-container {
+  height: 50vh;
+}
+ 
+#login-register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+}
+ 
+#index-header {
+  font-family: "Audiowide", sans-serif;
+  font-size: 40px;
+}
+ 
+#buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px;
+}
+ 
+#login-btn,
+#register-btn {
+  text-decoration: none;
+  padding: 15px 40px;
+  margin-bottom: 10px;
+  border-radius: 30px;
+  border: none;
+  font-family: "Audiowide", sans-serif;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  background-color: #5148699a;
+  color: white;
+}
+ 
+#login-btn:hover,
+#register-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: hsl(0, 94%, 50%);
+}
+ 
+#buttons-container p {
+  
+  font-family: "Audiowide", sans-serif;
+}
+.registration-link {
+  text-decoration: none;
+}
+
+.logoutbtn button{
+  height: 60px;
+  line-height: 50px;
+  color:  white;
+  background-color: rgb(158, 0, 0);
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  transition: background-color 0.5s ease;
+  font-family: "Luckiest Guy", cursive;
+  font-style: italic; 
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+.logoutbtn button:hover {
+  background-color:rgb(225, 0, 0);
+color: white;
+border-radius: 5px;
+}
 
 /*************  Media Queries **************/
 
@@ -1124,12 +1084,48 @@ height: 20px;
 /* Media query tablets*/
 @media (min-width: 481px) and (max-width: 768px) {
 
+  .logoutbtn button{
+    flex-direction: column;
+    margin-left: 41.5%;
+
+  }
+/*Homepage*/
+.header-content{
+  margin-top: 25%;
+}
 .photo-grid{
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 20px;
   margin-top: 50px;
-  margin-left: 25%;
+  margin-right: 10%;
+}
+
+#HomepageFortniteCharacterImg{
+height: 240px;
+width: 240px;
+margin-left: 0.5%;
+}
+
+/*LandingPage*/
+.game-container {
+  flex-direction: row;
+  align-items: center;
+  margin-top: 30%;
+}
+
+#FortniteLandingLogo{
+  width: 62%;
+  margin-left: 18%;
+  }
+  
+#FortniteLandingTitle{
+  margin-top: 2%;
+  }
+
+.character_detail, .favorites_detail, .blacklist_detail{
+  margin-left: -5%;
+  text-align: center;
 }
 
 .photo-grid p{
@@ -1139,10 +1135,6 @@ height: 20px;
 #HomepageFortniteCharacterImg{
   width: 125%;
   margin-left: -25%;
-}
-
-.header-content{
-margin-top: 40%;
 }
 
 .landing-page-header nav {
@@ -1157,16 +1149,14 @@ margin-top: 40%;
 /*---favoriete/blacklist personages apart---*/
 
 h1{
-  margin-top: 32%;
+  margin-top: 20%;
 }
 
-.favorite_characters{
-  grid-template-columns: 1fr 1fr;
+.product{
   margin-top: 10%;
 }
-
 .character-container{
-  gap: 0.2rem;
+  gap: 1rem;
 }
 .product-title{
   margin-top: 5rem;
@@ -1175,13 +1165,17 @@ h1{
   border-style: none;
   flex-direction: column;
 }
-/* .product figure{
-} */
-.product figure img{
-  width: 10%;
+.Favo-Img img{
+  margin-top: 20%;
+  margin-left: 55%;
 }
-.product-title{
-  margin-top: 130%;
+.product-description{
+  margin-top: 150%;
+  width: 100%;
+  margin-left: -204%;
+}
+.product-description p{
+margin-left: -35%;
 }
 .product-description p{
   text-align: center;
@@ -1189,20 +1183,32 @@ h1{
 }
 .product-description{
   margin-left: -24%;
+  width: 300px;
 }
 h2{
   margin-left: 20%;
 }
 .Items{
-  margin-left: -9%;
+  margin-left: -51%;
   margin-top: 10%;
 }
 .Items img{
   width: 20%;
 }
-.action-buttons{
-  margin-top: 13%;
-  margin-left: 15%;
+.action-buttons, .action-buttons-blacklist{
+  margin-top: 10%;
+  margin-left: 9%;
+}
+.action-buttons-blacklist{
+  margin-left: 30%;
+}
+.Blacklist-Img img {
+  margin-top: 20%;
+  margin-left: 35%;
+}
+.product-info-blacklist{
+  margin-top: -13%;
+  margin-left: -20%;
 }
 figure p,.Blacklist-img{
   margin-left: 45%;
@@ -1211,6 +1217,12 @@ figure p,.Blacklist-img{
   width: 250%;
   margin-left: 10%;
 }
+.product-description-blacklist{
+  margin-left: -4%;;
+}
+.blacklistreason{
+margin-top: 9%;
+}
 .product-description-blacklist p{
   width: 150%;
   margin-left: -45%;
@@ -1218,7 +1230,7 @@ figure p,.Blacklist-img{
 }
 .product-title-blacklist{
   margin-top: 150%;
-  margin-left: 9%;
+  margin-left: 7%;
 }
 .Blacklist-img{
   margin-left: 1%;
@@ -1243,11 +1255,44 @@ h2{
   margin-top: 15%;
   margin-left: 4.5%;
 }
-
+/*LOGIN*/
+.main-login{
+  margin-top: -10%;
+}
+.left-login h1{
+  font-size: 1.9rem;
+  }
+  .card-login{
+    width: 430px;
+  }
+  .card-login h1,.textfield,.btn-login,.registration-link{
+    margin-top: 7%;
+  }
+  /*Registratie*/
+  .main-login{
+    margin-top: 10%;
+  }
+  .left-login h2{
+    margin-left: 0.1%;
+  }
 }
 
 /* Media query smartphones*/
 @media (max-width: 480px) {
+  .container{
+    margin-top: -15%;
+  }
+  /*homepage*/
+  .photo-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-left: 22%;
+    margin-top: 5%;
+  }
+  .header-content{
+    margin-top: 35%;
+  }
+  /*nav*/
 .landing-page-header nav {
     flex-direction: column;
     gap: 1rem;
@@ -1264,36 +1309,58 @@ h2{
     margin-bottom: 20px;
 }
 /*---favoriete/blacklist personages apart---*/
+.Favo-Img, .Blacklist-Img{
+  margin-top: 30%;
+}
+.Favo-Img img, .Blacklist-Img img{
+  margin-left: 35%;
+}
 .favorite_characters{
-  grid-template-columns: 1fr 1fr;
+grid-template-columns: 1fr 1fr;
 }
-figure p{
-  margin-left: 70%;
-  width: 100%;
-}
-.product figure img{
-  width: 200%;
-  margin-left: 70%;
-}
-.product-title{
-  margin-top: 110%;
-  margin-left: -21%;
-}
-.product-description{
-  margin-left: -50%;
-  width: 150%;
+.product-description, .product-description-blacklist{
+  margin-top: 430%;
+  margin-left: -204%;
+  width: 300%;
   text-align: center;
 }
-.action-buttons{
-  margin-left: -5%;
-  margin-top: 20%;
+.product-description-blacklist{
+  margin-top: 15%;
+  margin-left: -193%;
+  width: 300%;
+  text-align: center;
 }
-h2{
+.blacklistreason{
+  margin-top: 10%;
+  margin-left: 5%;
+}
+.product-title-blacklist{
+  margin-top: 380%;
+  margin-left: -70%;
+}
+.action-buttons{
+display: grid;
+grid-template-columns: 1fr;
+margin-top: 12%;
+margin-left: 10%;
+width: 250px;
+}
+.action-buttons-blacklist{
+display: grid;
+grid-template-columns: 1fr;
+margin-top: 12%;
+margin-left: 10%;
+width: 250px;
+}
+
+.product-info h2{
   margin-top: 20%;
-  margin-left: 6%;
+  margin-left: -75%;
+  font-size: 1.4rem;
+  margin-bottom: 18%;
 }
 .Items{
-  margin-left: -50%;
+  margin-left: -204%;
 }
 .Items img{
   width: 30%;
@@ -1301,6 +1368,28 @@ h2{
 .favorite_characters{
   grid-template-columns: 1fr;
 }
+/*Userprofile*/
+.profile-pic{
+  margin-top: 45%;
+}
+/*Login*/
+.main-login{
+  margin-top: 20%;
+}
+.left-login h2{
+font-size: 1.5rem;
+margin-left: -0.5%;
+}
+#game{
+  width: 310px;
+}
+.right-login{
+  margin-left: 10%;
+}
+.card-login p{
+  text-align: center;
+}
+
 }
 
 /* Media query desktops*/
@@ -1314,43 +1403,86 @@ h2{
     flex-wrap: wrap;
     justify-content: space-around;
 }
-
-
 .game {
     flex: 0 1 calc(33.33% - 20px); 
 }
+.topnav a{
+  display: inline;
+}
+.topnav a.icon {
+  display: none;
 
 }
 
-@media (max-width: 768px) {
+
+}
+
+@media (max-width: 767px) {
 .character {
   width: calc(100% / 2 - 20px); 
 }
 }
 @media (max-width: 480px) {
 .character {
-  width: 100%;
+  width: 80%;
 }
 }
 /* For tablets */
-@media (max-width: 768px) {
+@media (min-width: 481px) and (max-width: 768px) {
+.main-login{
+  margin-top: -5%;
+}
 nav {
   flex-direction: column;
 }
-.nav-left, .nav-right {
-  margin: 0 auto;
-  gap: 1rem;
-}
-}
-@media (max-width: 480px) {
-nav {
-  flex-direction: column;
-}
-.nav-left, .nav-right {
-  margin: 0 auto;
-  gap: 0.5rem;
-}
+.icon{
+  margin-top: -8%;
 }
 
+}
+@media (min-width: 320px) and (max-width: 425px) {
+  .favorites-character img{
+    width: 80%;
+    margin-left: 9%;
+  }
+  .blacklist-character img{
+    width: 80%;
+    margin-left: 9%;
+  }
+  .search-container{
+    width: 800px;
+    margin-left: -47%;
+  }
+  .topnav {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .topnav #myLinks {
+    display: none;
+  }
+  
+  .topnav a {
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+  }
+  
+  .topnav a.icon {
+    background: #001a67;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: -4%;
+  }
+  
+  .topnav a:hover {
+    background-color: #8bc6eb;
+    color: #001a67;
+  }
+}
+/* #8bc6eb #001a67 */
 /**********************************************************************/
 
