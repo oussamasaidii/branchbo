@@ -1,3 +1,5 @@
+<%- include('partials/header_fortnite') %>
+
 <main>
     <section class="character-container-detail">
         <figure class="character-image">
@@ -11,7 +13,19 @@
             </article>
         </article>
         <article class="action-buttons">
+
             <button class="remove-blacklist-button" onclick="removeFromBlacklist('<%= character.id %>')"><i class="fas fa-ban"></i> Verwijder van Blacklist</button>
+        
+            <article class="blacklist-reason">
+                <% if (locals.message) { %>
+                    <p class="message"><%= locals.message %></p>
+                <% } %>
+                <form onsubmit="updateBlacklistReason(event)">
+                    <input type="hidden" id="characterId" value="<%= character.id %>">
+                    <input type="text" name="reasonBlacklist" id="BlacklistReason" placeholder="Reden van blacklisting" value="<%= character.reasonBlacklist || 'Personage trekt op niks!' %>">
+                    <button type="submit">Reden Bijwerken</button>
+                </form>
+            </article>
         </article>
     </section>
 </main>
@@ -30,7 +44,7 @@ function removeFromBlacklist(characterId) {
         .then(result => {
             if (result.success) {
                 alert('Personage verwijderd van blacklist!');
-                window.location.href = '/blacklisted_characters';  // Pas dit aan naar de juiste route waar de gebruiker naartoe moet gaan
+                window.location.href = '/blacklisted_characters';  
             } else {
                 alert('Er ging iets mis bij het verwijderen!');
             }
@@ -41,4 +55,33 @@ function removeFromBlacklist(characterId) {
         });
     }
 }
+
+function updateBlacklistReason(event) {
+    event.preventDefault();
+    const characterId = document.getElementById('characterId').value;
+    const reasonBlacklist = document.getElementById('BlacklistReason').value;
+
+    fetch('/update-blacklist-reason', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ characterId, reasonBlacklist }),
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.success) {
+            alert('Blacklist reden succesvol bijgewerkt.');
+            // Optioneel, ververs de pagina of werk de UI bij
+        } else {
+            alert('Er ging iets mis bij het bijwerken van de blacklist reden.');
+        }
+    })
+    .catch(error => {
+        console.error('Fout bij het bijwerken van de blacklist reden:', error);
+        alert('Er ging iets mis bij het bijwerken van de blacklist reden.');
+    });
+}
 </script>
+
+<%- include('partials/footer') %>
